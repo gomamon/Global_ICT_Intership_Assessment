@@ -22,27 +22,27 @@ def createBST(keys):
     idx = -1
 
     for key in keys:
-        root = 0
+        current = 0
         idx += 1
 
         if len(bst) != 0:
-            # insert(root, key)
+
             while True:
                 counter += 1
-                if key < bst[root][0]:
-                    if bst[root][1] == -1:
+                if key < bst[current][0]:
+                    if bst[current][1] == -1:
                         bst.append([key,-1,-1])
-                        bst[root][1] = len(bst)-1
+                        bst[current][1] = len(bst)-1
                         break
                     else:
-                        root = bst[root][1]
+                        current = bst[current][1]
                 else:
-                    if bst[root][2] == -1:
+                    if bst[current][2] == -1:
                         bst.append([key,-1,-1])
-                        bst[root][2] = len(bst)-1
+                        bst[current][2] = len(bst)-1
                         break
                     else:
-                        root = bst[root][2]
+                        current = bst[current][2]
         else:
             bst.append([key, -1, -1])
 

@@ -34,12 +34,11 @@ def connectedCities(n, g, originCities, destinationCities):
     ans = [0]*(len(originCities))
 
 
-    #Union
+    #Union Connected Cities
     for i in range(g+1, n+1):
         mul = i
         # Union i and i's multiples(mul) less than n.
         while mul <= n :
-            # Find mul's root
             root_mul = findRoot(sets, mul)
             root_i = findRoot(sets, i)
             if root_mul != root_i:

@@ -22,7 +22,7 @@ def findRange(num):
     #get maximum value
 
     max_num = n
-    target_max = 9
+    target_max = '9'
     for target_max in n:
         if target_max != '9':
             break
@@ -31,7 +31,7 @@ def findRange(num):
 
     #get minimum value
     min_num = n
-    target_min = 0
+    target_min = '0'
 
     if n[0] == '1' and len(n) > 1:
         flag = False

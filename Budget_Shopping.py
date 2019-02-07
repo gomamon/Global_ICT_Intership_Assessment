@@ -21,18 +21,18 @@ import sys
 def budgetShopping(n, bundleQuantities, bundleCosts):
 
     m = len(bundleQuantities)
-    q = [0]*(n+1)
+    max_q = [0]*(n+1)
 
     for i in range(n+1):
         for j in range(m):
             if i == 0:
-                q[i] = 0
+                max_q[i] = 0
             elif i < bundleCosts[j]:
-                q[i] = max(q[i-1], q[i])
+                max_q[i] = max(max_q[i-1], max_q[i])
             else:
-                q[i] = max(q[i-1], bundleQuantities[j]+q[i-bundleCosts[j]], q[i])
+                max_q[i] = max(max_q[i-1], bundleQuantities[j]+max_q[i-bundleCosts[j]], max_q[i])
 
-    return q[n]
+    return max_q[n]
 
 
 if __name__ == '__main__':
