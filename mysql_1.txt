@@ -1,0 +1,9 @@
+select id,subject,count(*)
+from (
+    select student.id, examination.subject
+    FROM student
+    right join examination
+    on student.id = examination.student_id
+    order by student.id
+)StudentsExamTable
+group by StudentsExamTable.id, StudentsExamTable.subject

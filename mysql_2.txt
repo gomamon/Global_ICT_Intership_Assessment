@@ -1,0 +1,9 @@
+SELECT id,
+    IF(
+        p_id is NULL,"ROOT",
+        IF( id IN(SELECT p_id from tree)
+            ,"INNER", "LEAF"
+        )
+    )
+FROM tree
+ORDER BY id;
