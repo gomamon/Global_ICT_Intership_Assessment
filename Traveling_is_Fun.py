@@ -19,8 +19,40 @@ import sys
 #  4. INTEGER_ARRAY destinationCities
 #
 
+
+#Find root of set
+def findRoot(sets, i):
+    if sets[i] == i:
+        return i
+    sets[i:i+1] = [findRoot(sets, sets[i])]
+    return sets[i]
+
+
 def connectedCities(n, g, originCities, destinationCities):
-    # Write your code here
+
+    sets = [i for i in range(n+1)]
+    ans = [0]*(len(originCities))
+
+
+    #Union
+    for i in range(g+1, n+1):
+        mul = i
+        # Union i and i's multiples(mul) less than n.
+        while mul <= n :
+            # Find mul's root
+            root_mul = findRoot(sets, mul)
+            root_i = findRoot(sets, i)
+            if root_mul != root_i:
+                sets[root_mul] = root_i
+            mul += i
+
+    #Compare origin's root and destination's root.
+    for i in range(len(originCities)):
+        ans[i] = 1 if (findRoot(sets, originCities[i]) == findRoot(sets, destinationCities[i])) else 0
+
+    return ans
+
+
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
